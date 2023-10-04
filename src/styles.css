@@ -230,3 +230,40 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard{
+    --spacing: 0.3em;
+    display: flex;
+    gap: var( --spacing );
+    flex-direction: column;
+}
+
+.keyboard-row{
+    display: flex;
+    gap: var( --spacing );
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard-key{
+    --bg-color: var( --color-gray-900 );
+    --color: var( --color-gray-100 );
+    background-color: var( --bg-color );
+    color: var( --color );
+    border-radius: 0.3em;
+    padding: 0.2em 0.4em;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.keyboard-key.correct,
+.keyboard-key.misplaced,
+.keyboard-key.incorrect{
+    --color: white;
+}
+.keyboard-key.correct{ --bg-color: var( --color-success ); }
+.keyboard-key.misplaced{ --bg-color: var( --color-warning ); }
+.keyboard-key.incorrect{ --bg-color: var( --color-gray-100 ); }
+/* Correct letters should have a green background and white text
+Misplaced letters should have a yellow background and white text
+Incorrect letters should have a dark gray background and white text */

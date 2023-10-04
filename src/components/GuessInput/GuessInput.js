@@ -6,8 +6,8 @@ function GuessInput( {guesses, setGuesses, answer, gameMode, setGameMode}) {
   return (
     <form className="guess-input-wrapper" onSubmit={(event) => {
         event.preventDefault();
-        console.log( guess );
-        if ( guesses.length < NUM_OF_GUESSES_ALLOWED ){
+        //console.log( guess );
+        if ( guesses.length + 1 < NUM_OF_GUESSES_ALLOWED ){
             const newGuesses = [ ...guesses, guess];
             setGuesses( newGuesses );
             setGuess( '' );
@@ -15,6 +15,7 @@ function GuessInput( {guesses, setGuesses, answer, gameMode, setGameMode}) {
                 setGameMode( 'win' );
             }
         } else {
+            setGuess( '' );
             setGameMode( 'lose' );
         }
     }}>

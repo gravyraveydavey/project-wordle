@@ -8,14 +8,19 @@ import { checkGuess } from "../../game-helpers";
 import EndBanner from "../EndBanner";
 import Keyboard from "../Keyboard";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 function Game() {
-  const [guesses, setGuesses] = React.useState([]);
-  const [gameMode, setGameMode] = React.useState("playing");
+    // Pick a random word on every pageload.
+    const [answer, setAnswer] = React.useState( () => sample(WORDS) );
+    const [guesses, setGuesses] = React.useState([]);
+    const [gameMode, setGameMode] = React.useState("playing");
+    function resetGame() {
+        setGuesses( [] );
+        setAnswer( () => sample(WORDS) );
+        setGameMode( 'playing' );
+    }
+    console.info({ answer });
   return (
     <>
       <GuessResults
@@ -32,7 +37,7 @@ function Game() {
       />
       <Keyboard guesses={guesses} answer={answer} />
       {gameMode !== "playing" && (
-        <EndBanner gameMode={gameMode} guesses={guesses} answer={answer} />
+        <EndBanner gameMode={gameMode} guesses={guesses} answer={answer} resetGame={resetGame}/>
       )}
     </>
   );
